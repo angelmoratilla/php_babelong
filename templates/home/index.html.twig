@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ welcome_message }} - Babelong{% endblock %}
+
+{% block body %}
+<div style="margin-bottom: 1em;">
+    <div class="example-wrapper">
+        <h1>{{ welcome_message }}</h1>
+
+        <p>
+            Esta es la página principal de tu proyecto Symfony <strong>Babelong</strong>.
+        </p>
+
+        <div class="card card-success">
+            <h2>🎉 ¡Proyecto configurado exitosamente!</h2>
+            <ul>
+                <li>✅ Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</li>
+                <li>✅ Twig para plantillas</li>
+                <li>✅ Sistema de formularios</li>
+                <li>✅ Validador de datos</li>
+                <li>✅ Gestión de assets</li>
+            </ul>
+        </div>
+
+        <div class="card card-info">
+            <p>
+                <strong>Controlador:</strong> <code>{{ controller_name }}</code><br>
+                <strong>Plantilla:</strong> <code>templates/home/index.html.twig</code>
+            </p>
+        </div>
+
+        <p>
+            <a href="{{ path('app_about') }}" class="btn btn-primary">
+                Ver información del proyecto
+            </a>
+        </p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acerca de {{ project_name }}{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1>Acerca de {{ project_name }}</h1>
+    
+    <div class="card">
+        <h2>📋 Información del Proyecto</h2>
+        <table>
+            <tr>
+                <td><strong>Nombre:</strong></td>
+                <td>{{ project_name }}</td>
+            </tr>
+            <tr>
+                <td><strong>Versión:</strong></td>
+                <td>{{ version }}</td>
+            </tr>
+            <tr>
+                <td><strong>Framework:</strong></td>
+                <td>Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</td>
+            </tr>
+            <tr>
+                <td><strong>PHP:</strong></td>
+                <td>{{ constant('PHP_VERSION') }}</td>
+            </tr>
+            <tr>
+                <td><strong>Descripción:</strong></td>
+                <td>{{ description }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card card-success">
+        <h3>🚀 Características incluidas:</h3>
+        <ul>
+            <li><strong>Twig Templates</strong> - Motor de plantillas moderno y seguro</li>
+            <li><strong>Symfony Forms</strong> - Sistema robusto para crear formularios</li>
+            <li><strong>Validator</strong> - Validación de datos potente y flexible</li>
+            <li><strong>Asset Component</strong> - Gestión optimizada de recursos estáticos</li>
+            <li><strong>PHP 8.3</strong> - Última versión de PHP con todas las extensiones necesarias</li>
+        </ul>
+    </div>
+
+    <p>
+        <a href="{{ path('app_home') }}" class="btn btn-success">
+            ← Volver al inicio
+        </a>
+    </p>
+</div>
+{% endblock %}
