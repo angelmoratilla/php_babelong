@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de Usuarios - Babelong{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1>👥 Lista de Usuarios</h1>
+    
+    <div class="card">
+        <h2>Usuarios registrados: {{ total_users }}</h2>
+        
+        {% if users|length > 0 %}
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr style="background: #f8f9fa; font-weight: bold;">
+                            <td>ID</td>
+                            <td>Usuario</td>
+                            <td>Email</td>
+                            <td>Activo</td>
+                            <td>Idioma</td>
+                            <td>HSK Level</td>
+                            <td>Fecha Creación</td>
+                            <td>Último Acceso</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td><strong>{{ user.username ?: 'N/A' }}</strong></td>
+                                <td>{{ user.email ?: 'N/A' }}</td>
+                                <td>
+                                    {% if user.active %}
+                                        <span style="color: green;">✓ Sí</span>
+                                    {% else %}
+                                        <span style="color: red;">✗ No</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ user.language|upper }}</td>
+                                <td>{{ user.hsklevel }}</td>
+                                <td>{{ user.creationDate ? user.creationDate|date('d/m/Y') : 'N/A' }}</td>
+                                <td>{{ user.accessDate ? user.accessDate|date('d/m/Y') : 'N/A' }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="card card-info">
+                <p>No hay usuarios registrados en la base de datos.</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <div style="margin: 30px 0;">
+        <a href="{{ path('app_database_stats') }}" class="btn btn-primary">
+            📊 Ver Estadísticas de la BD
+        </a>
+        <a href="{{ path('app_home') }}" class="btn btn-success">
+            🏠 Volver al Inicio
+        </a>
+    </div>
+</div>
+{% endblock %}

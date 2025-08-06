@@ -38,6 +38,11 @@ h1, h2, h3 {
     color: white;
 }
 
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
 .btn:hover {
     opacity: 0.9;
     transform: translateY(-1px);

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Estadísticas de Base de Datos - Babelong{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1>📊 Estadísticas de Base de Datos</h1>
+    
+    <div class="card card-success">
+        <h2>🗄️ Información de la Base de Datos</h2>
+        <table>
+            <tr>
+                <td><strong>Nombre de la Base de Datos:</strong></td>
+                <td><code>{{ database_name }}</code></td>
+            </tr>
+            <tr>
+                <td><strong>Total de Usuarios:</strong></td>
+                <td><span style="font-size: 1.2em; font-weight: bold; color: #007bff;">{{ user_count }}</span></td>
+            </tr>
+            <tr>
+                <td><strong>Total de Palabras:</strong></td>
+                <td><span style="font-size: 1.2em; font-weight: bold; color: #28a745;">{{ word_count }}</span></td>
+            </tr>
+            <tr>
+                <td><strong>Total de Frases:</strong></td>
+                <td><span style="font-size: 1.2em; font-weight: bold; color: #ffc107;">{{ phrase_count }}</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card card-info">
+        <h3>✅ Conexión Establecida</h3>
+        <p>La conexión a la base de datos MySQL se ha establecido correctamente usando Doctrine ORM.</p>
+        <ul>
+            <li><strong>Framework:</strong> Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</li>
+            <li><strong>ORM:</strong> Doctrine</li>
+            <li><strong>Base de Datos:</strong> MySQL</li>
+            <li><strong>Estado:</strong> <span style="color: green;">✓ Conectado</span></li>
+        </ul>
+    </div>
+
+    <div style="margin: 30px 0;">
+        <a href="{{ path('app_users') }}" class="btn btn-primary">
+            👥 Ver Lista de Usuarios
+        </a>
+        <a href="{{ path('app_test_connection') }}" class="btn btn-success" target="_blank">
+            🔍 Test de Conexión (JSON)
+        </a>
+        <a href="{{ path('app_home') }}" class="btn btn-secondary">
+            🏠 Volver al Inicio
+        </a>
+    </div>
+</div>
+{% endblock %}
