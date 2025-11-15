@@ -1,0 +1,114 @@
+{% extends 'user/base.html.twig' %}
+
+{% block title %}Mi Progreso - Babelong{% endblock %}
+
+{% block body %}
+<div class="page-header">
+    <h1>📈 Mi Progreso</h1>
+    <p>Visualiza tu evolución y estadísticas de aprendizaje</p>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <h3>Palabras Aprendidas</h3>
+        <div class="stat-value">0</div>
+        <div class="stat-label">Total de vocabulario</div>
+    </div>
+    <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+        <h3>Ejercicios Completados</h3>
+        <div class="stat-value">0</div>
+        <div class="stat-label">Prácticas realizadas</div>
+    </div>
+    <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+        <h3>Racha Actual</h3>
+        <div class="stat-value">0</div>
+        <div class="stat-label">Días consecutivos</div>
+    </div>
+    <div class="stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+        <h3>Precisión</h3>
+        <div class="stat-value">0%</div>
+        <div class="stat-label">En ejercicios</div>
+    </div>
+</div>
+
+<div class="content-card">
+    <h2 style="color: #667eea; margin-bottom: 20px;">📊 Progreso por Nivel HSK</h2>
+    
+    <div style="margin-bottom: 30px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-weight: 600; color: #333;">HSK 1</span>
+            <span style="color: #666;">0 / 150 palabras</span>
+        </div>
+        <div style="background: #e9ecef; border-radius: 10px; height: 20px; overflow: hidden;">
+            <div style="background: linear-gradient(90deg, #667eea, #764ba2); width: 0%; height: 100%; transition: width 0.3s;"></div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-weight: 600; color: #333;">HSK 2</span>
+            <span style="color: #666;">0 / 300 palabras</span>
+        </div>
+        <div style="background: #e9ecef; border-radius: 10px; height: 20px; overflow: hidden;">
+            <div style="background: linear-gradient(90deg, #f093fb, #f5576c); width: 0%; height: 100%; transition: width 0.3s;"></div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-weight: 600; color: #333;">HSK 3</span>
+            <span style="color: #666;">0 / 600 palabras</span>
+        </div>
+        <div style="background: #e9ecef; border-radius: 10px; height: 20px; overflow: hidden;">
+            <div style="background: linear-gradient(90deg, #4facfe, #00f2fe); width: 0%; height: 100%; transition: width 0.3s;"></div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-weight: 600; color: #333;">HSK 4</span>
+            <span style="color: #666;">0 / 1200 palabras</span>
+        </div>
+        <div style="background: #e9ecef; border-radius: 10px; height: 20px; overflow: hidden;">
+            <div style="background: linear-gradient(90deg, #43e97b, #38f9d7); width: 0%; height: 100%; transition: width 0.3s;"></div>
+        </div>
+    </div>
+</div>
+
+<div class="content-card">
+    <h2 style="color: #667eea; margin-bottom: 20px;">🏆 Logros Desbloqueados</h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px;">
+        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px; opacity: 0.5;">
+            <div style="font-size: 48px; margin-bottom: 10px;">🌟</div>
+            <strong>Primera Palabra</strong>
+            <p style="font-size: 12px; color: #666; margin-top: 5px;">Aprende tu primera palabra</p>
+        </div>
+
+        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px; opacity: 0.5;">
+            <div style="font-size: 48px; margin-bottom: 10px;">🔥</div>
+            <strong>Racha de 7 días</strong>
+            <p style="font-size: 12px; color: #666; margin-top: 5px;">Estudia 7 días seguidos</p>
+        </div>
+
+        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px; opacity: 0.5;">
+            <div style="font-size: 48px; margin-bottom: 10px;">📚</div>
+            <strong>100 Palabras</strong>
+            <p style="font-size: 12px; color: #666; margin-top: 5px;">Aprende 100 palabras</p>
+        </div>
+
+        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px; opacity: 0.5;">
+            <div style="font-size: 48px; margin-bottom: 10px;">🎯</div>
+            <strong>100% Precisión</strong>
+            <p style="font-size: 12px; color: #666; margin-top: 5px;">Completa un quiz perfecto</p>
+        </div>
+    </div>
+</div>
+
+<div class="content-card">
+    <h2 style="color: #667eea; margin-bottom: 20px;">📅 Actividad Reciente</h2>
+    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center; color: #666;">
+        <p>Aún no tienes actividad registrada. ¡Comienza a estudiar!</p>
+    </div>
+</div>
+{% endblock %}

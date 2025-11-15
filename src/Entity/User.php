@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'fw_user')]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -171,5 +173,22 @@ class User
     {
         $this->useColors = $useColors;
         return $this;
+    }
+
+    // UserInterface implementation
+    public function getRoles(): array
+    {
+        // Usuarios normales tienen ROLE_USER
+        return ['ROLE_USER'];
+    }
+
+    public function eraseCredentials(): void
+    {
+        // No es necesario limpiar datos sensibles temporales
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
     }
 }

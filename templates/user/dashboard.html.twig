@@ -1,0 +1,71 @@
+{% extends 'user/base.html.twig' %}
+
+{% block title %}Dashboard - Babelong{% endblock %}
+
+{% block body %}
+<div class="page-header">
+    <h1>¡Bienvenido, {{ user.username }}! 👋</h1>
+    <p>Continúa tu aprendizaje de chino mandarín</p>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <h3>Nivel HSK</h3>
+        <div class="stat-value">{{ user.hsklevel }}</div>
+        <div class="stat-label">Nivel actual</div>
+    </div>
+    <div class="stat-card">
+        <h3>Días de aprendizaje</h3>
+        <div class="stat-value">{{ 'now'|date('U') - user.creationDate.timestamp }}{{ (('now'|date('U') - user.creationDate.timestamp) / 86400)|round }}</div>
+        <div class="stat-label">Desde tu registro</div>
+    </div>
+    <div class="stat-card">
+        <h3>Modo de quiz</h3>
+        <div class="stat-value">{{ user.quizMode }}</div>
+        <div class="stat-label">Configuración actual</div>
+    </div>
+    <div class="stat-card">
+        <h3>Último acceso</h3>
+        <div class="stat-value">{{ user.accessDate ? user.accessDate|date('d/m') : 'N/A' }}</div>
+        <div class="stat-label">Fecha</div>
+    </div>
+</div>
+
+<div class="content-card">
+    <h2 style="color: #667eea; margin-bottom: 20px;">🎯 Accesos Rápidos</h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+        <a href="{{ path('app_user_vocabulary') }}" style="display: block; padding: 20px; background: #f8f9fa; border-radius: 10px; text-decoration: none; color: #333; text-align: center; transition: transform 0.3s;">
+            <div style="font-size: 40px; margin-bottom: 10px;">📚</div>
+            <strong>Vocabulario</strong>
+            <p style="font-size: 12px; color: #666; margin-top: 5px;">Aprende nuevas palabras</p>
+        </a>
+        
+        <a href="{{ path('app_user_exercises') }}" style="display: block; padding: 20px; background: #f8f9fa; border-radius: 10px; text-decoration: none; color: #333; text-align: center; transition: transform 0.3s;">
+            <div style="font-size: 40px; margin-bottom: 10px;">✏️</div>
+            <strong>Ejercicios</strong>
+            <p style="font-size: 12px; color: #666; margin-top: 5px;">Practica lo aprendido</p>
+        </a>
+        
+        <a href="{{ path('app_user_progress') }}" style="display: block; padding: 20px; background: #f8f9fa; border-radius: 10px; text-decoration: none; color: #333; text-align: center; transition: transform 0.3s;">
+            <div style="font-size: 40px; margin-bottom: 10px;">📈</div>
+            <strong>Progreso</strong>
+            <p style="font-size: 12px; color: #666; margin-top: 5px;">Revisa tus avances</p>
+        </a>
+        
+        <a href="{{ path('app_user_profile') }}" style="display: block; padding: 20px; background: #f8f9fa; border-radius: 10px; text-decoration: none; color: #333; text-align: center; transition: transform 0.3s;">
+            <div style="font-size: 40px; margin-bottom: 10px;">👤</div>
+            <strong>Perfil</strong>
+            <p style="font-size: 12px; color: #666; margin-top: 5px;">Configuración</p>
+        </a>
+    </div>
+</div>
+
+<div class="content-card">
+    <h2 style="color: #667eea; margin-bottom: 20px;">💡 Consejos de hoy</h2>
+    <div style="padding: 20px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 8px;">
+        <p style="color: #856404; margin-bottom: 10px;"><strong>🌟 Practica diariamente</strong></p>
+        <p style="color: #856404;">La constancia es clave en el aprendizaje de idiomas. Dedica al menos 15 minutos al día para ver resultados significativos.</p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,152 @@
+{% extends 'user/base.html.twig' %}
+
+{% block title %}Mi Perfil - Babelong{% endblock %}
+
+{% block body %}
+<div class="page-header">
+    <h1>👤 Mi Perfil</h1>
+    <p>Gestiona tu información y preferencias</p>
+</div>
+
+<div class="content-card">
+    <h2 style="color: #667eea; margin-bottom: 20px;">Información Personal</h2>
+    
+    <form method="post" style="max-width: 600px;">
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;">
+                Nombre de Usuario
+            </label>
+            <input type="text" name="username" value="{{ user.username }}" 
+                   style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px;"
+                   required>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;">
+                Email
+            </label>
+            <input type="email" name="email" value="{{ user.email }}" 
+                   style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px;"
+                   required>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;">
+                Idioma de Interfaz
+            </label>
+            <select name="language" 
+                    style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px;">
+                <option value="es" {% if user.language == 'es' %}selected{% endif %}>Español</option>
+                <option value="en" {% if user.language == 'en' %}selected{% endif %}>English</option>
+                <option value="zh" {% if user.language == 'zh' %}selected{% endif %}>中文</option>
+            </select>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;">
+                Nivel HSK Actual
+            </label>
+            <select name="hsklevel" 
+                    style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px;">
+                <option value="1" {% if user.hsklevel == 1 %}selected{% endif %}>HSK 1</option>
+                <option value="2" {% if user.hsklevel == 2 %}selected{% endif %}>HSK 2</option>
+                <option value="3" {% if user.hsklevel == 3 %}selected{% endif %}>HSK 3</option>
+                <option value="4" {% if user.hsklevel == 4 %}selected{% endif %}>HSK 4</option>
+                <option value="5" {% if user.hsklevel == 5 %}selected{% endif %}>HSK 5</option>
+                <option value="6" {% if user.hsklevel == 6 %}selected{% endif %}>HSK 6</option>
+            </select>
+        </div>
+
+        <button type="submit" 
+                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 16px;">
+            💾 Guardar Cambios
+        </button>
+    </form>
+</div>
+
+<div class="content-card">
+    <h2 style="color: #667eea; margin-bottom: 20px;">⚙️ Preferencias de Aprendizaje</h2>
+    
+    <form method="post" style="max-width: 600px;">
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;">
+                Modo de Quiz
+            </label>
+            <select name="quizMode" 
+                    style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px;">
+                <option value="NORMAL" {% if user.quizMode == 'NORMAL' %}selected{% endif %}>Normal</option>
+                <option value="HARD" {% if user.quizMode == 'HARD' %}selected{% endif %}>Difícil</option>
+                <option value="EASY" {% if user.quizMode == 'EASY' %}selected{% endif %}>Fácil</option>
+            </select>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label style="display: flex; align-items: center; cursor: pointer;">
+                <input type="checkbox" name="useColors" {% if user.useColors %}checked{% endif %}
+                       style="width: 20px; height: 20px; margin-right: 10px;">
+                <span style="font-weight: 600; color: #333;">Usar colores en el aprendizaje</span>
+            </label>
+            <p style="font-size: 14px; color: #666; margin-top: 5px; margin-left: 30px;">
+                Los colores ayudan a memorizar mejor los tonos y caracteres
+            </p>
+        </div>
+
+        <button type="submit" 
+                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 16px;">
+            💾 Guardar Preferencias
+        </button>
+    </form>
+</div>
+
+<div class="content-card">
+    <h2 style="color: #667eea; margin-bottom: 20px;">🔐 Cambiar Contraseña</h2>
+    
+    <form method="post" style="max-width: 600px;">
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;">
+                Contraseña Actual
+            </label>
+            <input type="password" name="current_password" 
+                   style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px;"
+                   required>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;">
+                Nueva Contraseña
+            </label>
+            <input type="password" name="new_password" 
+                   style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px;"
+                   required>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;">
+                Confirmar Nueva Contraseña
+            </label>
+            <input type="password" name="confirm_password" 
+                   style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px;"
+                   required>
+        </div>
+
+        <button type="submit" 
+                style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 16px;">
+            🔒 Cambiar Contraseña
+        </button>
+    </form>
+</div>
+
+<div class="content-card">
+    <h2 style="color: #dc3545; margin-bottom: 20px;">⚠️ Zona de Peligro</h2>
+    
+    <div style="padding: 20px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 8px; margin-bottom: 15px;">
+        <p style="color: #856404; margin-bottom: 10px;"><strong>¿Deseas eliminar tu cuenta?</strong></p>
+        <p style="color: #856404; margin-bottom: 15px;">Esta acción es permanente y no se puede deshacer. Se eliminarán todos tus datos y progreso.</p>
+        
+        <button onclick="return confirm('¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.')"
+                style="background: #dc3545; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+            🗑️ Eliminar Cuenta
+        </button>
+    </div>
+</div>
+{% endblock %}

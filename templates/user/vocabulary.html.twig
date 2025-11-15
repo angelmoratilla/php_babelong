@@ -1,0 +1,71 @@
+{% extends 'user/base.html.twig' %}
+
+{% block title %}Vocabulario - Babelong{% endblock %}
+
+{% block body %}
+<div class="page-header">
+    <h1>📚 Vocabulario de Chino Mandarín</h1>
+    <p>Aprende y practica nuevas palabras y caracteres</p>
+</div>
+
+<div class="content-card">
+    <h2 style="color: #667eea; margin-bottom: 20px;">Categorías de Vocabulario</h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 15px;">
+            <h3 style="margin-bottom: 15px;">🔤 Caracteres Básicos</h3>
+            <p style="opacity: 0.9; margin-bottom: 15px;">Los caracteres esenciales para comenzar</p>
+            <button style="background: white; color: #667eea; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                Comenzar
+            </button>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 25px; border-radius: 15px;">
+            <h3 style="margin-bottom: 15px;">🍜 Comida y Bebida</h3>
+            <p style="opacity: 0.9; margin-bottom: 15px;">Vocabulario relacionado con alimentos</p>
+            <button style="background: white; color: #f5576c; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                Comenzar
+            </button>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 25px; border-radius: 15px;">
+            <h3 style="margin-bottom: 15px;">🏠 Casa y Familia</h3>
+            <p style="opacity: 0.9; margin-bottom: 15px;">Palabras sobre hogar y relaciones</p>
+            <button style="background: white; color: #00f2fe; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                Comenzar
+            </button>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; padding: 25px; border-radius: 15px;">
+            <h3 style="margin-bottom: 15px;">🚗 Transporte</h3>
+            <p style="opacity: 0.9; margin-bottom: 15px;">Medios de transporte y direcciones</p>
+            <button style="background: white; color: #38f9d7; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                Comenzar
+            </button>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; padding: 25px; border-radius: 15px;">
+            <h3 style="margin-bottom: 15px;">🕐 Tiempo y Números</h3>
+            <p style="opacity: 0.9; margin-bottom: 15px;">Fechas, horas y números en chino</p>
+            <button style="background: white; color: #fa709a; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                Comenzar
+            </button>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); color: white; padding: 25px; border-radius: 15px;">
+            <h3 style="margin-bottom: 15px;">💼 Trabajo</h3>
+            <p style="opacity: 0.9; margin-bottom: 15px;">Vocabulario profesional y de oficina</p>
+            <button style="background: white; color: #330867; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                Comenzar
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="content-card">
+    <h2 style="color: #667eea; margin-bottom: 20px;">📖 Palabras Recientes</h2>
+    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center; color: #666;">
+        <p>Aún no has estudiado ninguna palabra. ¡Comienza ahora!</p>
+    </div>
+</div>
+{% endblock %}

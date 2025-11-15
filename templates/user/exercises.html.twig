@@ -1,0 +1,83 @@
+{% extends 'user/base.html.twig' %}
+
+{% block title %}Ejercicios - Babelong{% endblock %}
+
+{% block body %}
+<div class="page-header">
+    <h1>✏️ Ejercicios de Práctica</h1>
+    <p>Refuerza tu aprendizaje con diferentes tipos de ejercicios</p>
+</div>
+
+<div class="content-card">
+    <h2 style="color: #667eea; margin-bottom: 20px;">Tipos de Ejercicios</h2>
+    
+    <div style="display: grid; gap: 20px;">
+        <div style="display: flex; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #667eea;">
+            <div style="font-size: 48px; margin-right: 20px;">✍️</div>
+            <div style="flex: 1;">
+                <h3 style="color: #333; margin-bottom: 5px;">Escritura de Caracteres</h3>
+                <p style="color: #666; margin-bottom: 10px;">Practica la escritura de caracteres chinos</p>
+                <span style="background: #667eea; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px;">Nivel HSK {{ user.hsklevel }}</span>
+            </div>
+            <button style="background: #667eea; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                Comenzar
+            </button>
+        </div>
+
+        <div style="display: flex; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #f093fb;">
+            <div style="font-size: 48px; margin-right: 20px;">🎯</div>
+            <div style="flex: 1;">
+                <h3 style="color: #333; margin-bottom: 5px;">Quiz de Vocabulario</h3>
+                <p style="color: #666; margin-bottom: 10px;">Responde preguntas sobre palabras aprendidas</p>
+                <span style="background: #f093fb; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px;">Modo: {{ user.quizMode }}</span>
+            </div>
+            <button style="background: #f093fb; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                Comenzar
+            </button>
+        </div>
+
+        <div style="display: flex; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #4facfe;">
+            <div style="font-size: 48px; margin-right: 20px;">🎧</div>
+            <div style="flex: 1;">
+                <h3 style="color: #333; margin-bottom: 5px;">Comprensión Auditiva</h3>
+                <p style="color: #666; margin-bottom: 10px;">Escucha y reconoce palabras y frases</p>
+                <span style="background: #4facfe; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px;">10 ejercicios</span>
+            </div>
+            <button style="background: #4facfe; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                Comenzar
+            </button>
+        </div>
+
+        <div style="display: flex; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #43e97b;">
+            <div style="font-size: 48px; margin-right: 20px;">🔤</div>
+            <div style="flex: 1;">
+                <h3 style="color: #333; margin-bottom: 5px;">Pinyin a Caracteres</h3>
+                <p style="color: #666; margin-bottom: 10px;">Convierte palabras de pinyin a caracteres</p>
+                <span style="background: #43e97b; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px;">20 palabras</span>
+            </div>
+            <button style="background: #43e97b; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                Comenzar
+            </button>
+        </div>
+
+        <div style="display: flex; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #fa709a;">
+            <div style="font-size: 48px; margin-right: 20px;">📝</div>
+            <div style="flex: 1;">
+                <h3 style="color: #333; margin-bottom: 5px;">Construcción de Frases</h3>
+                <p style="color: #666; margin-bottom: 10px;">Construye frases correctas en chino</p>
+                <span style="background: #fa709a; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px;">15 ejercicios</span>
+            </div>
+            <button style="background: #fa709a; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                Comenzar
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="content-card">
+    <h2 style="color: #667eea; margin-bottom: 20px;">📊 Ejercicios Recientes</h2>
+    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center; color: #666;">
+        <p>No has completado ejercicios recientemente. ¡Empieza a practicar!</p>
+    </div>
+</div>
+{% endblock %}

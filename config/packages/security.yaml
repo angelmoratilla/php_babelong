@@ -4,6 +4,9 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
         App\Entity\Admin:
             algorithm: bcrypt
+        App\Entity\User:
+            # Usar MD5 para mantener compatibilidad con base de datos existente
+            id: App\Security\Md5PasswordHasher
     
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
@@ -11,6 +14,13 @@ security:
             entity:
                 class: App\Entity\Admin
                 property: email
+        user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+        chain_provider:
+            chain:
+                providers: ['admin_provider', 'user_provider']
     
     firewalls:
         dev:
@@ -19,11 +29,11 @@ security:
         
         main:
             lazy: true
-            provider: admin_provider
+            provider: chain_provider
             form_login:
                 login_path: app_login
                 check_path: app_login
-                default_target_path: app_admin_home
+                default_target_path: app_user_dashboard
                 enable_csrf: true
             logout:
                 path: app_logout
@@ -35,6 +45,7 @@ security:
         - { path: ^/login, roles: PUBLIC_ACCESS }
         - { path: ^/register, roles: PUBLIC_ACCESS }
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/user, roles: ROLE_USER }
 
 when@test:
     security:
