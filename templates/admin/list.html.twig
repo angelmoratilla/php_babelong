@@ -1,0 +1,137 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administradores{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Lista de Administradores</h1>
+    
+    <div class="stats">
+        <p><strong>Total de administradores:</strong> {{ total_admins }}</p>
+    </div>
+
+    {% if admins|length > 0 %}
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for admin in admins %}
+                    <tr>
+                        <td>{{ admin.id }}</td>
+                        <td>{{ admin.username }}</td>
+                        <td>{{ admin.email }}</td>
+                        <td>
+                            {% if admin.active %}
+                                <span class="badge badge-success">Activo</span>
+                            {% else %}
+                                <span class="badge badge-danger">Inactivo</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-data">No hay administradores registrados.</p>
+    {% endif %}
+
+    <div class="actions">
+        <a href="{{ path('app_admin_home') }}" class="btn btn-secondary">Volver al inicio</a>
+        <a href="{{ path('app_admin_test_create') }}" class="btn btn-primary">Crear admin de prueba</a>
+    </div>
+</div>
+
+<style>
+.stats {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.data-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+.data-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.badge {
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.badge-success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.badge-danger {
+    background-color: #f44336;
+    color: white;
+}
+
+.no-data {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
+.actions {
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background-color: #2196F3;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0b7dda;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+</style>
+{% endblock %}

@@ -5,10 +5,10 @@
 {% block body %}
 <div style="margin-bottom: 1em;">
     <div class="example-wrapper">
-        <h1>{{ welcome_message }}</h1>
+        <h1>{{ welcome_message }} - Panel de Administración</h1>
 
         <p>
-            Esta es la página principal de tu proyecto Symfony <strong>Babelong</strong>.
+            Bienvenido al panel de administración de <strong>Babelong</strong>.
         </p>
 
         <div class="card card-success">
@@ -47,6 +47,12 @@
         <p>
             <a href="{{ path('app_about') }}" class="btn btn-primary">
                 Ver información del proyecto
+            </a>
+            <a href="{{ path('app_admins') }}" class="btn btn-info">
+                👤 Gestionar Administradores
+            </a>
+            <a href="{{ path('app_landing') }}" class="btn btn-secondary">
+                🏠 Volver al Inicio Público
             </a>
         </p>
     </div>

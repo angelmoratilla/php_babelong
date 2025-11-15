@@ -37,7 +37,7 @@ class User
     #[ORM\Column(type: 'string', length: 10, nullable: true, options: ['default' => 'en'])]
     private ?string $language = 'en';
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(name: 'federatedId', type: 'string', length: 255, nullable: true)]
     private ?string $federatedId = null;
 
     #[ORM\Column(type: 'string', length: 20, nullable: true, options: ['default' => 'NORMAL'])]

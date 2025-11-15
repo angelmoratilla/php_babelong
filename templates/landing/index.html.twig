@@ -1,0 +1,322 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenido a Babelong{% endblock %}
+
+{% block body %}
+<div class="landing-container">
+    <header class="landing-header">
+        <div class="container">
+            <h1 class="logo-text">Babelong</h1>
+            <nav class="main-nav">
+                <a href="#features">Características</a>
+                <a href="#about">Acerca de</a>
+                <a href="{{ path('app_login') }}" class="btn-login">Iniciar Sesión</a>
+                <a href="{{ path('app_register') }}" class="btn-register">Registrarse</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Aprende Chino de forma efectiva</h1>
+                <p class="hero-subtitle">La plataforma completa para dominar el idioma chino mandarín</p>
+                <div class="hero-buttons">
+                    <a href="{{ path('app_register') }}" class="btn btn-primary btn-large">Comenzar Gratis</a>
+                    <a href="#features" class="btn btn-secondary btn-large">Conocer Más</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2>¿Qué ofrece Babelong?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Vocabulario Extenso</h3>
+                    <p>Miles de palabras y frases organizadas por nivel y temática</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✍️</div>
+                    <h3>Caracteres Hanzi</h3>
+                    <p>Aprende a escribir y reconocer caracteres chinos tradicionales y simplificados</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Práctica Personalizada</h3>
+                    <p>Ejercicios adaptados a tu nivel y progreso</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Seguimiento de Progreso</h3>
+                    <p>Visualiza tu avance y mantén tu motivación</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Acerca de Babelong</h2>
+            <p>Babelong es una plataforma diseñada para estudiantes de chino mandarín de todos los niveles. 
+            Nuestro objetivo es hacer que el aprendizaje del chino sea accesible, efectivo y motivador.</p>
+        </div>
+    </section>
+
+    <footer class="landing-footer">
+        <div class="container">
+            <p>&copy; 2025 Babelong. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</div>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.landing-container {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.landing-header {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.landing-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2196F3;
+    margin: 0;
+}
+
+.main-nav {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.main-nav a:hover {
+    color: #2196F3;
+}
+
+.btn-login {
+    padding: 8px 20px;
+    border: 1px solid #2196F3;
+    border-radius: 5px;
+    color: #2196F3 !important;
+}
+
+.btn-login:hover {
+    background: #f0f8ff;
+}
+
+.btn-register {
+    padding: 8px 20px;
+    background: #2196F3;
+    border-radius: 5px;
+    color: white !important;
+}
+
+.btn-register:hover {
+    background: #0b7dda;
+    color: white !important;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.hero-subtitle {
+    font-size: 24px;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-large {
+    padding: 15px 40px;
+    font-size: 18px;
+}
+
+.btn-primary {
+    background: white;
+    color: #667eea;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondary:hover {
+    background: white;
+    color: #667eea;
+}
+
+/* Features Section */
+.features {
+    padding: 80px 0;
+    background: #f9f9f9;
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 60px;
+    color: #333;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.feature-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.feature-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* About Section */
+.about {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.about p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Footer */
+.landing-footer {
+    background: #333;
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.landing-footer p {
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .landing-header .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}

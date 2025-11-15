@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class DatabaseController extends AbstractController
 {
-    #[Route('/users', name: 'app_users')]
+    #[Route('/admin/users', name: 'app_users')]
     public function listUsers(EntityManagerInterface $entityManager): Response
     {
         $userRepository = $entityManager->getRepository(User::class);
@@ -22,7 +22,7 @@ class DatabaseController extends AbstractController
         ]);
     }
 
-    #[Route('/database-stats', name: 'app_database_stats')]
+    #[Route('/admin/database-stats', name: 'app_database_stats')]
     public function databaseStats(EntityManagerInterface $entityManager): Response
     {
         // Obtener estadísticas de la base de datos
@@ -48,7 +48,7 @@ class DatabaseController extends AbstractController
         ]);
     }
 
-    #[Route('/test-connection', name: 'app_test_connection')]
+    #[Route('/admin/test-connection', name: 'app_test_connection')]
     public function testConnection(EntityManagerInterface $entityManager): Response
     {
         try {
@@ -72,6 +72,28 @@ class DatabaseController extends AbstractController
             return $this->json([
                 'status' => 'error',
                 'message' => 'Error de conexión: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
+    #[Route('/admin/admin-test', name: 'app_admin_test')]
+    public function testAdminTable(EntityManagerInterface $entityManager): Response
+    {
+        try {
+            $connection = $entityManager->getConnection();
+            
+            // Verificar estructura de la tabla
+            $columns = $connection->fetchAllAssociative('DESCRIBE admin');
+            
+            return $this->json([
+                'status' => 'success',
+                'message' => 'Tabla admin creada correctamente',
+                'columns' => $columns,
+            ]);
+        } catch (\Exception $e) {
+            return $this->json([
+                'status' => 'error',
+                'message' => 'Error: ' . $e->getMessage()
             ], 500);
         }
     }
