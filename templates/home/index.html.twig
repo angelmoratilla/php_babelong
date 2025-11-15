@@ -7,6 +7,12 @@
     <div class="example-wrapper">
         <h1>{{ welcome_message }} - Panel de Administración</h1>
 
+        <div class="user-info">
+            <p><strong>Usuario:</strong> {{ app.user.username }}</p>
+            <p><strong>Email:</strong> {{ app.user.email }}</p>
+            <a href="{{ path('app_logout') }}" class="btn btn-danger btn-sm">Cerrar Sesión</a>
+        </div>
+
         <p>
             Bienvenido al panel de administración de <strong>Babelong</strong>.
         </p>
