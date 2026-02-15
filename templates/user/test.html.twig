@@ -1,0 +1,273 @@
+{% extends 'user/base.html.twig' %}
+
+{% block title %}Test de Vocabulario - Babelong{% endblock %}
+
+{% block body %}
+<div class="page-header">
+    <h1>🎯 Test de Vocabulario</h1>
+    <p>Practica palabras del nivel HSK {{ hskLevel }}</p>
+</div>
+
+<div class="content-card">
+    <div id="test-container">
+        <!-- Estadísticas del test -->
+        <div style="display: flex; justify-content: space-around; margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+            <div style="text-align: center;">
+                <div style="font-size: 14px; color: #666;">Preguntas</div>
+                <div style="font-size: 24px; font-weight: bold; color: #667eea;" id="question-count">0</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 14px; color: #666;">Correctas</div>
+                <div style="font-size: 24px; font-weight: bold; color: #48bb78;" id="correct-count">0</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 14px; color: #666;">Incorrectas</div>
+                <div style="font-size: 24px; font-weight: bold; color: #f56565;" id="incorrect-count">0</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 14px; color: #666;">Precisión</div>
+                <div style="font-size: 24px; font-weight: bold; color: #667eea;" id="accuracy">0%</div>
+            </div>
+        </div>
+
+        <!-- Área de la pregunta -->
+        <div id="question-area" style="text-align: center; margin-bottom: 30px;">
+            <div style="padding: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; color: white; margin-bottom: 20px;">
+                <div style="font-size: 48px; font-weight: bold; margin-bottom: 10px;" id="question-simplified">加载中...</div>
+                <div style="font-size: 24px; opacity: 0.9;" id="question-pinyin">Cargando pregunta...</div>
+            </div>
+            <p style="font-size: 18px; color: #666;">¿Cuál es la traducción correcta?</p>
+        </div>
+
+        <!-- Opciones de respuesta -->
+        <div id="options-container" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 30px;">
+            <!-- Las opciones se cargarán dinámicamente -->
+        </div>
+
+        <!-- Feedback -->
+        <div id="feedback" style="display: none; padding: 20px; border-radius: 10px; margin-bottom: 20px;"></div>
+
+        <!-- Botón siguiente -->
+        <div style="text-align: center;">
+            <button id="next-button" onclick="loadNextQuestion()" 
+                    style="padding: 15px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 10px; font-size: 16px; cursor: pointer; font-weight: bold;">
+                Siguiente Pregunta
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+.option-button {
+    padding: 20px;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: left;
+}
+
+.option-button:hover:not(:disabled) {
+    border-color: #667eea;
+    background: #f7fafc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.option-button:disabled {
+    cursor: not-allowed;
+}
+
+.option-button.correct {
+    background: #48bb78;
+    border-color: #48bb78;
+    color: white;
+}
+
+.option-button.incorrect {
+    background: #f56565;
+    border-color: #f56565;
+    color: white;
+}
+</style>
+
+<script>
+let currentQuestion = null;
+let stats = {
+    total: 0,
+    correct: 0,
+    incorrect: 0
+};
+
+function updateStats() {
+    document.getElementById('question-count').textContent = stats.total;
+    document.getElementById('correct-count').textContent = stats.correct;
+    document.getElementById('incorrect-count').textContent = stats.incorrect;
+    
+    const accuracy = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
+    document.getElementById('accuracy').textContent = accuracy + '%';
+}
+
+async function loadNextQuestion() {
+    // Ocultar feedback
+    document.getElementById('feedback').style.display = 'none';
+    
+    // Deshabilitar botón mientras carga
+    const nextButton = document.getElementById('next-button');
+    nextButton.disabled = true;
+    nextButton.textContent = 'Cargando...';
+    
+    try {
+        const response = await fetch('{{ path('app_user_test_next_question') }}');
+        const data = await response.json();
+        
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
+        
+        currentQuestion = data;
+        currentQuestion.attempted = false;
+        currentQuestion.correctAnswered = false;
+        
+        // Mostrar pregunta
+        document.getElementById('question-simplified').textContent = data.question.simplified;
+        document.getElementById('question-pinyin').textContent = data.question.pinyin;
+        
+        // Mostrar opciones
+        const optionsContainer = document.getElementById('options-container');
+        optionsContainer.innerHTML = '';
+        
+        data.options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.className = 'option-button';
+            button.textContent = option.translation;
+            button.onclick = () => selectAnswer(option.id, data.question.id);
+            optionsContainer.appendChild(button);
+        });
+        
+        nextButton.textContent = 'Siguiente Pregunta';
+        nextButton.disabled = false;
+        
+    } catch (error) {
+        console.error('Error al cargar pregunta:', error);
+        alert('Error al cargar la pregunta');
+        nextButton.disabled = false;
+        nextButton.textContent = 'Reintentar';
+    }
+}
+
+async function selectAnswer(selectedId, questionId) {
+    const buttons = document.querySelectorAll('.option-button');
+    
+    try {
+        const response = await fetch('{{ path('app_user_test_check_answer') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                selectedId: selectedId,
+                questionId: questionId
+            })
+        });
+        
+        const result = await response.json();
+        
+        // Mostrar feedback
+        const feedback = document.getElementById('feedback');
+        feedback.style.display = 'block';
+        
+        if (result.correct) {
+            // Guardar si fue el primer intento antes de modificar el flag
+            const isFirstAttempt = !currentQuestion.attempted;
+            
+            // Solo incrementar stats en el primer intento
+            if (isFirstAttempt) {
+                stats.total++;
+                stats.correct++;
+            }
+            currentQuestion.attempted = true;
+            updateStats();
+            
+            feedback.style.background = '#c6f6d5';
+            feedback.style.color = '#22543d';
+            
+            // Mostrar mensaje diferente si es el primer intento o un reintento
+            if (isFirstAttempt) {
+                // Primer intento correcto
+                feedback.innerHTML = `
+                    <div style="font-size: 20px; margin-bottom: 10px;">✅ ¡Perfecto!</div>
+                    <div>${result.explanation}</div>
+                `;
+            } else {
+                // No fue el primer intento
+                feedback.innerHTML = `
+                    <div style="font-size: 20px; margin-bottom: 10px;">✅ Correcto (después de fallar)</div>
+                    <div>${result.explanation}</div>
+                `;
+            }
+            
+            // Deshabilitar todos los botones
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                if (btn.textContent === result.correctAnswer) {
+                    btn.classList.add('correct');
+                }
+            });
+            
+            // Esperar 1.5 segundos y cargar la siguiente pregunta automáticamente
+            setTimeout(() => {
+                loadNextQuestion();
+            }, 1500);
+            
+        } else {
+            // Solo incrementar stats.total en el primer intento
+            if (!currentQuestion.attempted) {
+                stats.total++;
+                stats.incorrect++;
+                currentQuestion.attempted = true;
+            }
+            updateStats();
+            
+            // Mostrar mensaje de error SIN revelar la respuesta correcta
+            feedback.style.background = '#fed7d7';
+            feedback.style.color = '#742a2a';
+            feedback.innerHTML = `
+                <div style="font-size: 20px; margin-bottom: 10px;">❌ Incorrecto</div>
+                <div>Intenta de nuevo. Piensa bien en el significado del carácter.</div>
+            `;
+            
+            // Marcar solo el botón seleccionado como incorrecto
+            buttons.forEach(btn => {
+                const btnOnclick = btn.onclick?.toString() || '';
+                if (btnOnclick.includes(`selectAnswer(${selectedId},`)) {
+                    btn.classList.add('incorrect');
+                    btn.disabled = true; // Deshabilitar solo esta opción incorrecta
+                }
+            });
+            
+            // Las demás opciones siguen habilitadas para intentar de nuevo
+        }
+        
+    } catch (error) {
+        console.error('Error al verificar respuesta:', error);
+        const feedback = document.getElementById('feedback');
+        feedback.style.display = 'block';
+        feedback.style.background = '#fed7d7';
+        feedback.style.color = '#742a2a';
+        feedback.innerHTML = `
+            <div style="font-size: 20px; margin-bottom: 10px;">⚠️ Error</div>
+            <div>Hubo un problema al verificar tu respuesta. Por favor, intenta de nuevo.</div>
+        `;
+    }
+}
+
+// Cargar primera pregunta al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    loadNextQuestion();
+});
+</script>
+{% endblock %}

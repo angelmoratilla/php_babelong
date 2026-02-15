@@ -5,79 +5,92 @@
 {% block body %}
 <div class="page-header">
     <h1>✏️ Ejercicios de Práctica</h1>
-    <p>Refuerza tu aprendizaje con diferentes tipos de ejercicios</p>
+    <p>Mejora tus habilidades con diferentes tipos de ejercicios</p>
 </div>
 
 <div class="content-card">
-    <h2 style="color: #667eea; margin-bottom: 20px;">Tipos de Ejercicios</h2>
+    <h2 style="color: #667eea; margin-bottom: 20px;">Tipos de Ejercicios Disponibles</h2>
     
-    <div style="display: grid; gap: 20px;">
-        <div style="display: flex; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #667eea;">
-            <div style="font-size: 48px; margin-right: 20px;">✍️</div>
-            <div style="flex: 1;">
-                <h3 style="color: #333; margin-bottom: 5px;">Escritura de Caracteres</h3>
-                <p style="color: #666; margin-bottom: 10px;">Practica la escritura de caracteres chinos</p>
-                <span style="background: #667eea; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px;">Nivel HSK {{ user.hsklevel }}</span>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+        <!-- Test de Vocabulario -->
+        <a href="{{ path('app_user_test') }}" style="display: block; text-decoration: none;">
+            <div style="padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; color: white; transition: transform 0.3s; cursor: pointer;">
+                <div style="font-size: 48px; margin-bottom: 15px;">🎯</div>
+                <h3 style="margin-bottom: 10px; font-size: 20px;">Test de Vocabulario</h3>
+                <p style="opacity: 0.9; font-size: 14px;">Practica la traducción de palabras con opciones múltiples</p>
+                <div style="margin-top: 15px; padding: 8px 15px; background: rgba(255,255,255,0.2); border-radius: 5px; display: inline-block; font-size: 12px;">
+                    ⚡ Recomendado
+                </div>
             </div>
-            <button style="background: #667eea; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600;">
-                Comenzar
-            </button>
+        </a>
+        
+        <!-- Escritura de Caracteres -->
+        <div style="padding: 30px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 15px; color: white;">
+            <div style="font-size: 48px; margin-bottom: 15px;">✍️</div>
+            <h3 style="margin-bottom: 10px; font-size: 20px;">Escritura de Caracteres</h3>
+            <p style="opacity: 0.9; font-size: 14px;">Aprende a escribir caracteres chinos correctamente</p>
+            <div style="margin-top: 15px; padding: 8px 15px; background: rgba(255,255,255,0.2); border-radius: 5px; display: inline-block; font-size: 12px;">
+                🔜 Próximamente
+            </div>
         </div>
-
-        <div style="display: flex; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #f093fb;">
-            <div style="font-size: 48px; margin-right: 20px;">🎯</div>
-            <div style="flex: 1;">
-                <h3 style="color: #333; margin-bottom: 5px;">Quiz de Vocabulario</h3>
-                <p style="color: #666; margin-bottom: 10px;">Responde preguntas sobre palabras aprendidas</p>
-                <span style="background: #f093fb; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px;">Modo: {{ user.quizMode }}</span>
+        
+        <!-- Comprensión Auditiva -->
+        <div style="padding: 30px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 15px; color: white;">
+            <div style="font-size: 48px; margin-bottom: 15px;">🎧</div>
+            <h3 style="margin-bottom: 10px; font-size: 20px;">Comprensión Auditiva</h3>
+            <p style="opacity: 0.9; font-size: 14px;">Practica escuchando palabras y frases</p>
+            <div style="margin-top: 15px; padding: 8px 15px; background: rgba(255,255,255,0.2); border-radius: 5px; display: inline-block; font-size: 12px;">
+                🔜 Próximamente
             </div>
-            <button style="background: #f093fb; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600;">
-                Comenzar
-            </button>
         </div>
-
-        <div style="display: flex; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #4facfe;">
-            <div style="font-size: 48px; margin-right: 20px;">🎧</div>
-            <div style="flex: 1;">
-                <h3 style="color: #333; margin-bottom: 5px;">Comprensión Auditiva</h3>
-                <p style="color: #666; margin-bottom: 10px;">Escucha y reconoce palabras y frases</p>
-                <span style="background: #4facfe; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px;">10 ejercicios</span>
+        
+        <!-- Pinyin -->
+        <div style="padding: 30px; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); border-radius: 15px; color: white;">
+            <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
+            <h3 style="margin-bottom: 10px; font-size: 20px;">Práctica de Pinyin</h3>
+            <p style="opacity: 0.9; font-size: 14px;">Mejora tu pronunciación con ejercicios de pinyin</p>
+            <div style="margin-top: 15px; padding: 8px 15px; background: rgba(255,255,255,0.2); border-radius: 5px; display: inline-block; font-size: 12px;">
+                🔜 Próximamente
             </div>
-            <button style="background: #4facfe; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600;">
-                Comenzar
-            </button>
         </div>
-
-        <div style="display: flex; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #43e97b;">
-            <div style="font-size: 48px; margin-right: 20px;">🔤</div>
-            <div style="flex: 1;">
-                <h3 style="color: #333; margin-bottom: 5px;">Pinyin a Caracteres</h3>
-                <p style="color: #666; margin-bottom: 10px;">Convierte palabras de pinyin a caracteres</p>
-                <span style="background: #43e97b; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px;">20 palabras</span>
+        
+        <!-- Construcción de Frases -->
+        <div style="padding: 30px; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); border-radius: 15px; color: #333;">
+            <div style="font-size: 48px; margin-bottom: 15px;">🧩</div>
+            <h3 style="margin-bottom: 10px; font-size: 20px;">Construcción de Frases</h3>
+            <p style="opacity: 0.8; font-size: 14px;">Ordena palabras para formar frases correctas</p>
+            <div style="margin-top: 15px; padding: 8px 15px; background: rgba(0,0,0,0.1); border-radius: 5px; display: inline-block; font-size: 12px;">
+                🔜 Próximamente
             </div>
-            <button style="background: #43e97b; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600;">
-                Comenzar
-            </button>
         </div>
-
-        <div style="display: flex; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #fa709a;">
-            <div style="font-size: 48px; margin-right: 20px;">📝</div>
-            <div style="flex: 1;">
-                <h3 style="color: #333; margin-bottom: 5px;">Construcción de Frases</h3>
-                <p style="color: #666; margin-bottom: 10px;">Construye frases correctas en chino</p>
-                <span style="background: #fa709a; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px;">15 ejercicios</span>
+        
+        <!-- Flashcards -->
+        <div style="padding: 30px; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border-radius: 15px; color: #333;">
+            <div style="font-size: 48px; margin-bottom: 15px;">🃏</div>
+            <h3 style="margin-bottom: 10px; font-size: 20px;">Flashcards</h3>
+            <p style="opacity: 0.8; font-size: 14px;">Repaso rápido con tarjetas de memoria</p>
+            <div style="margin-top: 15px; padding: 8px 15px; background: rgba(0,0,0,0.1); border-radius: 5px; display: inline-block; font-size: 12px;">
+                🔜 Próximamente
             </div>
-            <button style="background: #fa709a; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600;">
-                Comenzar
-            </button>
         </div>
     </div>
 </div>
 
-<div class="content-card">
-    <h2 style="color: #667eea; margin-bottom: 20px;">📊 Ejercicios Recientes</h2>
-    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center; color: #666;">
-        <p>No has completado ejercicios recientemente. ¡Empieza a practicar!</p>
-    </div>
+<div class="content-card" style="margin-top: 20px;">
+    <h2 style="color: #667eea; margin-bottom: 20px;">💡 Consejos para Practicar</h2>
+    <ul style="line-height: 2;">
+        <li>✅ Practica al menos 15 minutos al día</li>
+        <li>✅ Comienza con ejercicios de tu nivel HSK</li>
+        <li>✅ Repite los ejercicios donde tengas más errores</li>
+        <li>✅ Combina diferentes tipos de ejercicios</li>
+        <li>✅ No te desanimes con los errores, son parte del aprendizaje</li>
+    </ul>
 </div>
+
+<style>
+a > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+</style>
 {% endblock %}
