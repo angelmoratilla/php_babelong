@@ -16,12 +16,18 @@
     </div>
     <div class="stat-card">
         <h3>Días de aprendizaje</h3>
-        <div class="stat-value">{{ 'now'|date('U') - user.creationDate.timestamp }}{{ (('now'|date('U') - user.creationDate.timestamp) / 86400)|round }}</div>
+        <div class="stat-value">
+            {% if user.creationDate %}
+                {{ ((('now'|date('U') - user.creationDate.timestamp) / 86400)|round) }}
+            {% else %}
+                N/A
+            {% endif %}
+        </div>
         <div class="stat-label">Desde tu registro</div>
     </div>
     <div class="stat-card">
         <h3>Modo de quiz</h3>
-        <div class="stat-value">{{ user.quizMode }}</div>
+        <div class="stat-value">{{ user.quizMode ?? 'N/A' }}</div>
         <div class="stat-label">Configuración actual</div>
     </div>
     <div class="stat-card">
